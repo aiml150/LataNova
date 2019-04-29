@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Models
 {
-    public abstract class Vehicle
+    public class Vehicle
     {
         public Guid Id { get; set; }
         public string Plate { get; set; }
