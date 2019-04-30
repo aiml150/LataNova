@@ -1,8 +1,5 @@
 ﻿using Core.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infrastructure.Configuration
 {
@@ -15,18 +12,21 @@ namespace Infrastructure.Configuration
         public DbSet<Service> Services { get; set; }
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
 
-        internal object Include(Func<object, object> p)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-        }
+            if (!optionsBuilder.IsConfigured)
+            {
+                //var connectionString = @"Server=BRPC003931\SQLEXPRESS150;Database=LataNova;Trusted_Connection=True";
+                var connectionString = @"Server=tcp:latanova150.database.windows.net,1433;Initial Catalog=LataNova;Persist Security Info=False;User ID=arielzao150;Password=P@$$w0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+                //optionsBuilder.UseSqlServer(connectionString, b => b.MigrationsAssembly("API"));
+                optionsBuilder.UseSqlServer(connectionString);
+            }
+    }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+    protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Owner>();
+            builder.Entity<Vehicle>();
             builder.Entity<Service>();
             builder.Entity<ServiceOrder>();
         }

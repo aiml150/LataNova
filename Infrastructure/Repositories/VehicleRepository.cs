@@ -1,9 +1,10 @@
 ﻿using Core.Models;
 using Infrastructure.Configuration;
 using Infrastructure.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Infrastructure.Repositories
 {
@@ -17,10 +18,12 @@ namespace Infrastructure.Repositories
         }
 
         public IEnumerable<Vehicle> Get() => _db
+            .Vehicles
             .Include(c => c.Owner)
             .ToList();
 
         public Vehicle Find(Guid id) => _db
+            .Vehicles
             .Include(c => c.Owner)
             .FirstOrDefault(c => c.Id == id);
 
