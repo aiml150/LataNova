@@ -16,7 +16,7 @@ namespace LataNova.UnitTests
         }
 
         [Test]
-        public void WhenCreateOwner_ThenICanReadItsProperties()
+        public void WhenCreateVehicle_ThenICanReadItsProperties()
         {
             // Arrange
             var factory = new VehicleFactory();
@@ -28,15 +28,15 @@ namespace LataNova.UnitTests
             var year = 1234;
 
             // Act
-            var owner = factory.Create();
+            var vehicle = Singleton.Vehicle.Create();
             
             // Assert
-            Assert.AreEqual(owner.Id, id);
-            Assert.AreEqual(owner.Brand, brand);
-            Assert.AreEqual(owner.Color, color);
-            Assert.AreEqual(owner.Model, model);
-            Assert.AreEqual(owner.Plate, plate);
-            Assert.AreEqual(owner.Year, year);
+            Assert.AreEqual(vehicle.Id, id);
+            Assert.AreEqual(vehicle.Brand, brand);
+            Assert.AreEqual(vehicle.Color, color);
+            Assert.AreEqual(vehicle.Model, model);
+            Assert.AreEqual(vehicle.Plate, plate);
+            Assert.AreEqual(vehicle.Year, year);
         }
     }
 }
