@@ -1,12 +1,9 @@
 ﻿using API.Commands;
-using API.Commands.Contracts;
+using API.Managers;
 using Core.Models;
 using Infrastructure.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -14,19 +11,19 @@ namespace API.Controllers
     [ApiController]
     public class ServiceOrderController : ControllerBase
     {
-        private readonly IReadOnlyRepository<ServiceOrder> _serviceOrdeReadOnlyRepository;
+        private readonly IReadOnlyRepository<ServiceOrder> _serviceOrderReadOnlyRepository;
         private readonly IWriteRepository<ServiceOrder> _serviceOrderWriteRepository;
 
         public ServiceOrderController(IReadOnlyRepository<ServiceOrder> serviceOrdeReadOnlyRepository, IWriteRepository<ServiceOrder> serviceOrderWriteRepository)
         {
-            _serviceOrdeReadOnlyRepository = serviceOrdeReadOnlyRepository;
+            _serviceOrderReadOnlyRepository = serviceOrdeReadOnlyRepository;
             _serviceOrderWriteRepository = serviceOrderWriteRepository;
         }
 
         [HttpGet]
         public IActionResult ServiceOrders()
         {
-            return Ok(_serviceOrdeReadOnlyRepository.Get());
+            return Ok(_serviceOrderReadOnlyRepository.Get());
         }
 
 
@@ -59,15 +56,18 @@ namespace API.Controllers
         [HttpDelete]
         public IActionResult DeleteServiceOrder(Guid id)
         {
-
-            if(new DeleteCommand<ServiceOrder>(id, _serviceOrderWriteRepository, _serviceOrdeReadOnlyRepository).Execute())
+            if (CommandManager
+                .Invoke(new DeleteCommand<ServiceOrder>(
+                    id,
+                    _serviceOrderWriteRepository,
+                    _serviceOrderReadOnlyRepository)))
                 return Ok();
             return NotFound();
         }
 
         private ServiceOrder FindServiceOrder(Guid id)
         {
-            return _serviceOrdeReadOnlyRepository.Find(id);
+            return _serviceOrderReadOnlyRepository.Find(id);
         }
     }
 }

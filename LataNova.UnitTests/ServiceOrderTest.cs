@@ -16,7 +16,7 @@ namespace LataNova.UnitTests
         {
             // Arrange
             // Act
-            var serviceOrder = Singleton.ServiceOrder.Create();
+            var serviceOrder = Factories.ServiceOrder.Create();
             // Assert
         }
     }

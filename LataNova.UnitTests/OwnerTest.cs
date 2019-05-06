@@ -27,7 +27,7 @@ namespace LataNova.UnitTests
             var cpf = "123456789";
             
             // Act
-            var singleton = Singleton.Owner.Create();
+            var singleton = Factories.Owner.Create();
             var owner = factory.Create();
             
             // Assert

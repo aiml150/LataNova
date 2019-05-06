@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.Factories
+﻿namespace Application.Factories
 {
-    public sealed class Singleton
+    public sealed class Factories
     {
         private static OwnerFactory ownerFactory = null;
         private static VehicleFactory vehicleFactory = null;
@@ -12,7 +8,7 @@ namespace Application.Factories
         private static ServiceOrderFactory serviceOrderFactory = null;
         private static readonly object padlock = new object();
 
-        Singleton()
+        Factories()
         {
         }
 

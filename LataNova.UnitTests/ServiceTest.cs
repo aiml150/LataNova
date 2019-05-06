@@ -19,7 +19,7 @@ namespace LataNova.UnitTests
         {
             // Arrange
             // Act
-            var service = Singleton.Service.Create();
+            var service = Factories.Service.Create();
             // Assert
         }
     }
