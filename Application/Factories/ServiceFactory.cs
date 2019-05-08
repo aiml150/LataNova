@@ -12,5 +12,16 @@ namespace Application.Factories
         {
             return new Service();
         }
+
+        public Service Create(string description, string name, float value)
+        {
+            return new Service
+            {
+                Id = new Guid(),
+                Description = description,
+                Name = name,
+                Value = value
+            };
+        }
     }
 }

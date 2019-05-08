@@ -2,8 +2,6 @@
 using Core.Models;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LataNova.UnitTests
 {
@@ -19,21 +17,17 @@ namespace LataNova.UnitTests
         public void WhenCreateOwner_ThenICanReadItsProperties()
         {
             // Arrange
-            var factory = new OwnerFactory();
-            var id = Guid.Empty;
-            var gender = 'M';
-            var name = "Nome";
-            //var birthdate = DateTime.Now;
-            var cpf = "123456789";
-            
+            var cpf = "987654321";
+            var gender = 'F';
+            var name = "OwnerNome";
+            var birthdate = DateTime.Now;
+
             // Act
-            var singleton = Factories.Owner.Create();
-            var owner = factory.Create();
+            var owner = Factories.Owner.Create(name, cpf, gender, birthdate);
             
             // Assert
-            //Assert.AreEqual(owner.Id, id);
             Assert.AreEqual(owner.Name, name);
-            //Assert.AreEqual(owner.BirthDate, birthdate);
+            Assert.AreEqual(owner.BirthDate, birthdate);
             Assert.AreEqual(owner.CPF, cpf);
             Assert.AreEqual(owner.Gender, gender);
         }

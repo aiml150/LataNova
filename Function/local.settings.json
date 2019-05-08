@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=aiml;AccountKey=kPp6b7giZEDW9M4H2U28emXYPVzLN7N/M4MLyFhMg3A=;EndpointSuffix=core.windows.net",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "ServiceBusConnectionString": "Endpoint=sb://latanovaqueue.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=kPp6b7giZEDW9M4H2U28emXYPVzLN7N/M4MLyFhMg3A=",
+    "ServiceBusQueueName": "LataNovaQueue",
+    "ServiceBusTopicName": "GFTStartersTopic",
+    "ServiceBusSubscriptionName": "GFTStartersSubscription"
+  }
+}

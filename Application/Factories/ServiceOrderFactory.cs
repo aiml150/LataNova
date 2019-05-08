@@ -12,5 +12,16 @@ namespace Application.Factories
         {
             return new ServiceOrder();
         }
+
+        public ServiceOrder Create(Guid ServiceId, Guid VehicleId, int qnt)
+        {
+            return new ServiceOrder
+            {
+                Id = new Guid(),
+                Quantity = qnt,
+                ServiceId = ServiceId,
+                VehicleId = VehicleId
+            };
+        }
     }
 }

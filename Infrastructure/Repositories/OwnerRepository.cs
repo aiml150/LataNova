@@ -1,11 +1,9 @@
 ﻿using Core.Models;
 using Infrastructure.Configuration;
 using Infrastructure.Repositories.Contracts;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Infrastructure.Repositories
 {
@@ -24,8 +22,7 @@ namespace Infrastructure.Repositories
 
         public Owner Find(Guid id) => _db
             .Owners
-            .Include(o => o.Id == id)
-            .FirstOrDefault();
+            .FirstOrDefault(o => o.Id == id);
 
         public void Add(Owner owner)
         {

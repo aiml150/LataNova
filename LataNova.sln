@@ -21,15 +21,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Tests", "5 - Tests", "{B0ABDFD9-FD5A-48C4-B4F4-8A2BFF79B075}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LataNova.UnitTests", "LataNova.UnitTests\LataNova.UnitTests.csproj", "{30342F08-8E70-462F-A852-FCE4F40CD4DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LataNova.UnitTests", "LataNova.UnitTests\LataNova.UnitTests.csproj", "{30342F08-8E70-462F-A852-FCE4F40CD4DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnerAPI", "OwnerAPI\OwnerAPI.csproj", "{FEE0C088-555F-486E-A840-6C5B12500904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnerAPI", "OwnerAPI\OwnerAPI.csproj", "{FEE0C088-555F-486E-A840-6C5B12500904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleAPI", "VehicleAPI\VehicleAPI.csproj", "{6BC0971D-64E3-4431-9C71-D89396DECB90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleAPI", "VehicleAPI\VehicleAPI.csproj", "{6BC0971D-64E3-4431-9C71-D89396DECB90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAPI", "ServiceAPI\ServiceAPI.csproj", "{4BF00023-0345-4CA3-81A0-A74639F07ECC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceAPI", "ServiceAPI\ServiceAPI.csproj", "{4BF00023-0345-4CA3-81A0-A74639F07ECC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LataNova.IntegrationTests", "LataNova.IntegrationTests\LataNova.IntegrationTests.csproj", "{846AE772-D2B9-42CB-8EC1-531E4F170D64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LataNova.IntegrationTests", "LataNova.IntegrationTests\LataNova.IntegrationTests.csproj", "{846AE772-D2B9-42CB-8EC1-531E4F170D64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Function", "Function\Function.csproj", "{28D614BC-6486-4CEF-9F8C-6313643C3556}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{846AE772-D2B9-42CB-8EC1-531E4F170D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{846AE772-D2B9-42CB-8EC1-531E4F170D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{846AE772-D2B9-42CB-8EC1-531E4F170D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D614BC-6486-4CEF-9F8C-6313643C3556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D614BC-6486-4CEF-9F8C-6313643C3556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D614BC-6486-4CEF-9F8C-6313643C3556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D614BC-6486-4CEF-9F8C-6313643C3556}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{6BC0971D-64E3-4431-9C71-D89396DECB90} = {6EF955C0-DDC4-417D-9E01-CA74206DABCA}
 		{4BF00023-0345-4CA3-81A0-A74639F07ECC} = {6EF955C0-DDC4-417D-9E01-CA74206DABCA}
 		{846AE772-D2B9-42CB-8EC1-531E4F170D64} = {B0ABDFD9-FD5A-48C4-B4F4-8A2BFF79B075}
+		{28D614BC-6486-4CEF-9F8C-6313643C3556} = {6EF955C0-DDC4-417D-9E01-CA74206DABCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A811262C-1076-4D4C-9141-AB1184082993}

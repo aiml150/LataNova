@@ -10,22 +10,27 @@ namespace Application.Factories
     {
         public Owner Create()
         {
-            var owner = new Owner();
-            owner.CPF = "123456789";
-            owner.Name = "Nome";
-            owner.Gender = 'M';
-            owner.BirthDate = DateTime.Now;
+            var owner = new Owner
+            {
+                CPF = "",
+                Name = "",
+                Gender = 'A',
+                BirthDate = DateTime.Now
+            };
 
             return owner;
         }
 
         public Owner Create(string name, string cpf, char gender, DateTime birthdate)
         {
-            var owner = new Owner();
-            owner.CPF = cpf;
-            owner.Name = name;
-            owner.Gender = gender;
-            owner.BirthDate = birthdate;
+            var owner = new Owner
+            {
+                Id = Guid.NewGuid(),
+                CPF = cpf,
+                Name = name,
+                Gender = gender,
+                BirthDate = birthdate
+            };
 
             return owner;
         }
