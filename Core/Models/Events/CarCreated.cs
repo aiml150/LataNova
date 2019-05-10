@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Core.Models.Events
+﻿namespace Core.Models.Events
 {
     public class CarCreated
     {

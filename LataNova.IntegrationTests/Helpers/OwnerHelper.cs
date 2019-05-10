@@ -1,0 +1,20 @@
+﻿using Application.Factories;
+using Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace LataNova.IntegrationTests.Helpers
+{
+    public static class OwnerHelper
+    {
+        public static Owner CreateRandomOwner()
+        {
+            var name = Utils.RandomString(10);
+            var cpf = Utils.RandomString(10);
+            var gender = Utils.RandomString(1).ToCharArray()[0];
+            var birthdate = DateTime.Now;
+            return Factories.Owner.Create(name, cpf, gender, birthdate);
+        }
+    }
+}

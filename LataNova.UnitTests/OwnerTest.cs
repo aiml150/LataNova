@@ -1,5 +1,4 @@
 ﻿using Application.Factories;
-using Core.Models;
 using NUnit.Framework;
 using System;
 

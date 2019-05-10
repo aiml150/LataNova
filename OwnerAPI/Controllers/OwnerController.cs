@@ -2,9 +2,6 @@
 using Infrastructure.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -45,13 +42,16 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCar(Guid id, [FromBody] Owner owner)
+        public IActionResult UpdateOwner(Guid id, [FromBody] Owner owner)
         {
             var obj = FindOwner(id);
 
             obj.Name = owner.Name;
-
-            return Ok(obj);
+            obj.BirthDate = owner.BirthDate;
+            obj.Gender = owner.Gender;
+            obj.CPF = owner.CPF;
+            
+            return Ok(_ownerWriteRepository.Update(obj));
         }
 
         // DELETE: api/ApiWithActions/5

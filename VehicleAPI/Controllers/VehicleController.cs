@@ -59,6 +59,9 @@ namespace API.Controllers
 
             obj.Year = Vehicle.Year;
             obj.Color = Vehicle.Color;
+            obj.Brand = Vehicle.Brand;
+            obj.Model = Vehicle.Model;
+            obj.Plate = Vehicle.Plate;
 
             return Ok(_VehicleWriteRepository.Update(obj));
         }

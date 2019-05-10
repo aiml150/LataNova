@@ -3,7 +3,6 @@ using Core.Models.Events;
 using Function.IoC;
 using Infrastructure.ServiceBus.Contracts;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 

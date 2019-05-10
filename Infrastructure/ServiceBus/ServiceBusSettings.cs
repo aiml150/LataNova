@@ -1,7 +1,6 @@
 ﻿using Infrastructure.ServiceBus.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Infrastructure.ServiceBus
 {

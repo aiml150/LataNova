@@ -27,7 +27,9 @@ namespace Application.Factories
         public Vehicle Create(string brand, string color, string model, string plate, int year, Guid ownerId)
         {
             var vehicle = new Vehicle();
+            vehicle.Id = Guid.NewGuid();
             vehicle.Model = model;
+            vehicle.Brand = brand;
             vehicle.Color = color;
             vehicle.Plate = plate;
             vehicle.Year = year;
