@@ -1,8 +1,6 @@
 ﻿using Application.Factories.Interfaces;
 using Core.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Factories
 {
@@ -16,9 +14,6 @@ namespace Application.Factories
             vehicle.Model = "Modelo";
             vehicle.Plate = "PLACA";
             vehicle.Year = 1234;
-            //vehicle.Id = 
-            //vehicle.Owner = 
-            //    vehicle.OwnerId =
 
 
             return vehicle;
@@ -40,13 +35,15 @@ namespace Application.Factories
 
         public Vehicle Update(Vehicle vehicle, string brand, string color, string model, string plate, int year, Guid ownerId)
         {
-            vehicle.Brand = brand;
-            vehicle.Color = color;
-            vehicle.Model = model;
-            vehicle.Plate = plate;
-            vehicle.Year = year;
-            vehicle.OwnerId = ownerId;
-            return vehicle;
+            var updatedVehicle = new Vehicle();
+            updatedVehicle.Id = vehicle.Id;
+            updatedVehicle.Brand = brand;
+            updatedVehicle.Color = color;
+            updatedVehicle.Model = model;
+            updatedVehicle.Plate = plate;
+            updatedVehicle.Year = year;
+            updatedVehicle.OwnerId = ownerId;
+            return updatedVehicle;
         }
     }
 }

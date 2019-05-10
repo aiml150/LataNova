@@ -48,12 +48,13 @@ namespace API.Controllers
             var obj = FindServiceOrder(id);
 
             obj.Quantity = serviceOrder.Quantity;
-            _serviceOrderWriteRepository.Update(obj);
+            obj.ServiceId = serviceOrder.ServiceId;
+            obj.VehicleId = serviceOrder.VehicleId;
 
-            return Ok(obj);
+            return Ok(_serviceOrderWriteRepository.Update(obj));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteServiceOrder(Guid id)
         {
             if (CommandManager

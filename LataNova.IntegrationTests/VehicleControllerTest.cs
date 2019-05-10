@@ -65,11 +65,7 @@ namespace LataNova.IntegrationTests
 
             // Assert
             var vehicleReceived = JsonConvert.DeserializeObject<Vehicle>(await get_response.Content.ReadAsStringAsync());
-            Assert.AreEqual(vehicle.Id, vehicleReceived.Id);
-            Assert.AreEqual(vehicle.Model, vehicleReceived.Model);
-            Assert.AreEqual(vehicle.OwnerId, vehicleReceived.OwnerId);
-            Assert.AreEqual(vehicle.Plate, vehicleReceived.Plate);
-            Assert.AreEqual(vehicle.Year, vehicleReceived.Year);
+            VehicleHelper.AssertVehicle(vehicle, vehicleReceived);
         }
 
         [Test]

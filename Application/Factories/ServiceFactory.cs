@@ -17,7 +17,7 @@ namespace Application.Factories
         {
             return new Service
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Description = description,
                 Name = name,
                 Value = value

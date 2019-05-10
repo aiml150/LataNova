@@ -1,9 +1,7 @@
-using Application.Factories;
 using Core.Models;
 using LataNova.IntegrationTests.Helpers;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +16,7 @@ namespace LataNova.IntegrationTests
         [SetUp]
         public void Setup()
         {
+            client = new HttpClient();
         }
 
         [Test]
@@ -64,26 +63,31 @@ namespace LataNova.IntegrationTests
             // Assert
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
-
+        
         [Test]
-        public async Task WhenRequestOwnerControllerusingPut_ThenICheckIfOwnerWasUpdated()
+        public async Task WhenRequestOwnerControllerUsingPostWithOwnerOnBody_AndRequestOwnerControllerUsingGet_ThenVerifyIfOwnerWasAdded_ThenRequestOwnerControllerUsingPutWithUpdatedOwnerOnBody_AndRequestOwnerControllerUsingGet_ThenVerifyIfOwnerWasUpdated()
         {
             // Arrange
-            client = new HttpClient();
-            var id = "A0D812FF-B7EB-4B08-822D-5EEA274C4EB2";
-            
-            var ownerReceived = JsonConvert.DeserializeObject<Owner>(await (await client.GetAsync($"{url}/{id}")).Content.ReadAsStringAsync());
-            var ownerNewValues = OwnerHelper.CreateRandomOwner();
-            ownerNewValues.Id = ownerReceived.Id;
+            var owner = OwnerHelper.CreateRandomOwner();
 
             // Act
-            var response = await client.PutAsync($"{url}/{id}",
-                new StringContent(JsonConvert.SerializeObject(ownerNewValues), Encoding.UTF8, "application/json"));
+            var post_response = await client.PostAsync($"{url}",
+                new StringContent(JsonConvert.SerializeObject(owner), Encoding.UTF8, "application/json"));
+            Assert.AreEqual(post_response.StatusCode, System.Net.HttpStatusCode.OK);
 
-            // Assert
-            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
-            Assert.Equals(ownerNewValues,
-                JsonConvert.DeserializeObject<Owner>(await response.Content.ReadAsStringAsync()));
+            var get_response = await client.GetAsync($"{url}/{owner.Id}");
+            Assert.AreEqual(get_response.StatusCode, System.Net.HttpStatusCode.OK);
+            OwnerHelper.AssertOwner(owner, JsonConvert.DeserializeObject<Owner>(await get_response.Content.ReadAsStringAsync()));
+
+            var updatedOwner = OwnerHelper.CreateRandomOwner();
+            updatedOwner.Id = owner.Id;
+            var put_response = await client.PutAsync($"{url}/{owner.Id}",
+                new StringContent(JsonConvert.SerializeObject(updatedOwner), Encoding.UTF8, "application/json"));
+            Assert.AreEqual(put_response.StatusCode, System.Net.HttpStatusCode.OK);
+
+            get_response = await client.GetAsync($"{url}/{owner.Id}");
+            Assert.AreEqual(get_response.StatusCode, System.Net.HttpStatusCode.OK);
+            OwnerHelper.AssertOwner(updatedOwner, JsonConvert.DeserializeObject<Owner>(await get_response.Content.ReadAsStringAsync()));
         }
 
         [Test]

@@ -2,8 +2,6 @@
 using Core.Models;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LataNova.IntegrationTests.Helpers
 {

@@ -17,7 +17,7 @@ namespace Application.Factories
         {
             return new ServiceOrder
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Quantity = qnt,
                 ServiceId = ServiceId,
                 VehicleId = VehicleId

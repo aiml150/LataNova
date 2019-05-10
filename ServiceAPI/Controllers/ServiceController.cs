@@ -31,7 +31,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public IActionResult Service(Guid id)
         {
-            var obj = FindService(id);
+            var obj = _serviceReadOnlyRepository.Find(id);
             return Ok(obj);
         }
 
@@ -49,8 +49,10 @@ namespace API.Controllers
             var obj = FindService(id);
 
             obj.Name = service.Name;
+            obj.Description = service.Description;
+            obj.Value = service.Value;
 
-            return Ok(obj);
+            return Ok(_serviceWriteRepository.Update(obj));
         }
 
         // DELETE: api/ApiWithActions/5
