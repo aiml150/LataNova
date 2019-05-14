@@ -36,7 +36,7 @@ namespace LataNova.IntegrationTests
         }
 
         [Test]
-        public async Task WhenRequestVehicleControllerUsingGetWithSpecificId_ThenIReceiveVehicle()
+        public async Task WhenRequestServiceOrderControllerUsingGetWithSpecificId_ThenIReceiveServiceOrder()
         {
             // Arrange
             client = new HttpClient();
@@ -52,7 +52,7 @@ namespace LataNova.IntegrationTests
         }
 
         [Test]
-        public async Task WhenRequestVehicleControllerUsingPost_AndRequestVehicleControllerUsingGetWithId_ThenICheckIfVehicleWasAddedCorrectly()
+        public async Task WhenRequestServiceOrderControllerUsingPost_AndRequestServiceOrderControllerUsingGetWithId_ThenICheckIfServiceOrderWasAddedCorrectly()
         {
             // Arrange
             var serviceOrder = ServiceOrderHelper.CreateRandomServiceOrder();
