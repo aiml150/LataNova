@@ -14,7 +14,7 @@ namespace LataNova.IntegrationTests.Helpers
             var model = Utils.RandomString(10);
             var color = Utils.RandomString(10);
             var year = new Random().Next(1920, 2020);
-            var ownerId = new Guid("A0D812FF-B7EB-4B08-822D-5EEA274C4EB2");
+            var ownerId = new Guid("bec6bc69-cca7-41ed-bb43-074b4a3dfa97");
             return Factories.Vehicle.Create(brand, color, model, plate, year, ownerId);
         }
 

@@ -12,7 +12,8 @@ namespace LataNova.IntegrationTests
 {
     public class ServiceControllerTest
     {
-        private const string url = "https://localhost:44337/api/Service";
+        //private const string url = "https://localhost:44337/api/Service";
+        private const string url = "https://latanovaservices.azurewebsites.net/api/Service";
         private HttpClient client;
 
         [SetUp]
@@ -36,16 +37,19 @@ namespace LataNova.IntegrationTests
         public async Task WhenRequestServiceControllerUsingGetWithSpecificId_ThenIReceiveService()
         {
             // Arrange
-            var id = "F6187F67-A4A1-408E-B6D8-08D6D542737E";
+            var service = ServiceHelper.CreateRandomService();
 
             // Act
-            var response = await client.GetAsync($"{url}/{id}");
+            var post_response = await client.PostAsync($"{url}",
+                new StringContent(JsonConvert.SerializeObject(service), Encoding.UTF8, "application/json"));
+            Assert.AreEqual(post_response.StatusCode, System.Net.HttpStatusCode.OK);
+
+            var response = await client.GetAsync($"{url}/{service.Id}");
             var serviceReceived = JsonConvert.DeserializeObject<Service>(await response.Content.ReadAsStringAsync());
 
             // Assert
             Assert.NotNull(serviceReceived);
             Assert.IsInstanceOf(typeof(Service), serviceReceived);
-            Assert.AreEqual(serviceReceived.Id.ToString().ToUpper(), id);
         }
 
         [Test]

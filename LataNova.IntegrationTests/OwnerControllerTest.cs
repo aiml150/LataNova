@@ -10,7 +10,8 @@ namespace LataNova.IntegrationTests
 {
     public class OwnerControllerTest
     {
-        private const string url = "https://localhost:44394/api/Owner";
+        //private const string url = "https://localhost:44394/api/Owner";
+        private const string url = "https://ownerapi.azurewebsites.net/api/Owner";
         private HttpClient client;
 
         [SetUp]
@@ -37,11 +38,13 @@ namespace LataNova.IntegrationTests
         public async Task WhenRequestOwnerControllerUsingGetWithSpecificId_ThenIReceiveOwner()
         {
             // Arrange
-            client = new HttpClient();
-            var id = "A0D812FF-B7EB-4B08-822D-5EEA274C4EB2";
+            var owner = OwnerHelper.CreateRandomOwner();
 
             // Act
-            var response = await client.GetAsync($"{url}/{id}");
+            var post_response = await client.PostAsync($"{url}",
+                new StringContent(JsonConvert.SerializeObject(owner), Encoding.UTF8, "application/json"));
+
+            var response = await client.GetAsync($"{url}/{owner.Id}");
             var ownerReceived = JsonConvert.DeserializeObject<Owner>(await response.Content.ReadAsStringAsync());
 
             // Assert
@@ -54,7 +57,6 @@ namespace LataNova.IntegrationTests
         {
             // Arrange
             var owner = OwnerHelper.CreateRandomOwner();
-            client = new HttpClient();
             
             // Act
             var response = await client.PostAsync($"{url}",

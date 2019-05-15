@@ -12,7 +12,8 @@ namespace LataNova.IntegrationTests
 {
     public class ServiceOrderControllerTest
     {
-        private const string url = "https://localhost:44337/api/ServiceOrder";
+        //private const string url = "https://localhost:44337/api/ServiceOrder";
+        private const string url = "https://latanovaservices.azurewebsites.net/api/ServiceOrder";
         private HttpClient client;
 
         [SetUp]
@@ -24,9 +25,6 @@ namespace LataNova.IntegrationTests
         [Test]
         public async Task WhenRequestServiceOrderControllerUsingGet_ThenICanReadTheResponseContent()
         {
-            // Arrange
-            client = new HttpClient();
-
             // Act
             var response = await client.GetAsync($"{url}");
             var apiResponse = JsonConvert.DeserializeObject<ServiceOrder[]>(await response.Content.ReadAsStringAsync());
@@ -39,11 +37,14 @@ namespace LataNova.IntegrationTests
         public async Task WhenRequestServiceOrderControllerUsingGetWithSpecificId_ThenIReceiveServiceOrder()
         {
             // Arrange
-            client = new HttpClient();
-            var id = "F1FC3F20-E3A8-4B48-8583-60A3AA2062DE";
+            var serviceOrder = ServiceOrderHelper.CreateRandomServiceOrder();
 
             // Act
-            var response = await client.GetAsync($"{url}/{id}");
+            var post_response = await client.PostAsync($"{url}",
+                new StringContent(JsonConvert.SerializeObject(serviceOrder), Encoding.UTF8, "application/json"));
+            Assert.AreEqual(post_response.StatusCode, System.Net.HttpStatusCode.OK);
+
+            var response = await client.GetAsync($"{url}/{serviceOrder.Id}");
             var serviceOrderReceived = JsonConvert.DeserializeObject<ServiceOrder>(await response.Content.ReadAsStringAsync());
 
             // Assert

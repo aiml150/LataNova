@@ -14,7 +14,7 @@ namespace LataNova.IntegrationTests.Helpers
             var name = Utils.RandomString(10);
             var cpf = Utils.RandomString(10);
             var gender = Utils.RandomString(1).ToCharArray()[0];
-            var birthdate = DateTime.Now;
+            var birthdate = DateTime.UtcNow;
             return Factories.Owner.Create(name, cpf, gender, birthdate);
         }
         

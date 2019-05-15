@@ -11,8 +11,8 @@ namespace LataNova.IntegrationTests.Helpers
     {
         public static ServiceOrder CreateRandomServiceOrder()
         {
-            var vehicleId = new Guid("A4728FA1-C89B-474C-A945-01383D171CAB");
-            var serviceId = new Guid("F6187F67-A4A1-408E-B6D8-08D6D542737E");
+            var vehicleId = new Guid("a371b1ca-e0f5-489a-9a81-1d139a7da6f1");
+            var serviceId = new Guid("ce0c893c-b0ae-4a54-ac54-06b7a43d418d");
             var qnt = new Random().Next();
             return Factories.ServiceOrder.Create(serviceId, vehicleId, qnt);
         }

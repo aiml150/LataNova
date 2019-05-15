@@ -10,7 +10,8 @@ namespace LataNova.IntegrationTests
 {
     public class VehicleControllerTest
     {
-        private const string url = "https://localhost:44347/api/Vehicle";
+        //private const string url = "https://localhost:44347/api/Vehicle";
+        private const string url = "https://latanovavehicles.azurewebsites.net/api/Vehicle";
         private HttpClient client;
 
         [SetUp]
@@ -22,9 +23,6 @@ namespace LataNova.IntegrationTests
         [Test]
         public async Task WhenRequestVehicleControllerUsingGet_ThenICanReadTheResponseContent()
         {
-            // Arrange
-            client = new HttpClient();
-
             // Act
             var response = await client.GetAsync($"{url}");
             var apiResponse = JsonConvert.DeserializeObject<Vehicle[]>(await response.Content.ReadAsStringAsync());
@@ -37,11 +35,14 @@ namespace LataNova.IntegrationTests
         public async Task WhenRequestVehicleControllerUsingGetWithSpecificId_ThenIReceiveVehicle()
         {
             // Arrange
-            client = new HttpClient();
-            var id = "100419CE-87EB-4BC3-80C7-1A9FA8480422";
+            var vehicle = VehicleHelper.CreateRandomVehicle();
 
             // Act
-            var response = await client.GetAsync($"{url}/{id}");
+            var post_response = await client.PostAsync($"{url}",
+                new StringContent(JsonConvert.SerializeObject(vehicle), Encoding.UTF8, "application/json"));
+            Assert.AreEqual(post_response.StatusCode, System.Net.HttpStatusCode.OK);
+
+            var response = await client.GetAsync($"{url}/{vehicle.Id}");
             var vehicleReceived = JsonConvert.DeserializeObject<Vehicle>(await response.Content.ReadAsStringAsync());
 
             // Assert
