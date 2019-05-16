@@ -28,8 +28,8 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult Vehicles()
         {
-            return Ok("teste ci");
-            //return Ok(_VehicleReadOnlyRepository.Get());
+            //return Ok("teste ci");
+            return Ok(_VehicleReadOnlyRepository.Get());
         }
 
         [HttpGet("{id}")]
