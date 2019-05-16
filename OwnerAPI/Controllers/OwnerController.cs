@@ -22,8 +22,7 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult Owners()
         {
-            return Ok("teste ci 3");
-            //return Ok(_ownerReadOnlyRepository.Get());
+            return Ok(_ownerReadOnlyRepository.Get());
         }
 
         // GET: api/Owner/5
