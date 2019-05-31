@@ -1,5 +1,9 @@
+using API.Controllers;
 using Core.Models;
+using Infrastructure.Configuration;
+using Infrastructure.Repositories;
 using LataNova.IntegrationTests.Helpers;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using System.Net.Http;
@@ -110,6 +114,20 @@ namespace LataNova.IntegrationTests
             var test = get_response.Content.ReadAsStringAsync();
             // Assert
             Assert.AreEqual(get_response.StatusCode, System.Net.HttpStatusCode.NoContent);
+        }
+
+        [Test]
+        public async Task InstantiateControllerTest()
+        {
+            var connectionstring = "Connection string";
+
+            var optionsBuilder = new DbContextOptionsBuilder<LataNovaContext>().UseSqlServer(connectionstring).Options;
+            //optionsBuilder.UseSqlServerconnection(connectionstring);
+            var repo = new OwnerRepository(new LataNovaContext(optionsBuilder));
+
+            var controller = new OwnerController(repo,repo);
+
+            controller.Owners();
         }
     }
 }
